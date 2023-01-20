@@ -1,11 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import About from './components/About';
+import Footer from './components/Footer';
+import Herosection from './components/Herosection';
+import Highlights from './components/Highlights';
+import Navbar from './components/Navbar';
+import Testimonial from './components/Testimonial';
 
 function App() {
   return (
-    <div className="App">
-      HomePage
-    </div>
+    <>
+    <header>
+      <Navbar/>
+    </header>
+    <main>
+    <Herosection/>
+    <Highlights/>
+    <Testimonial/>
+    <About/>
+    </main>
+    <footer>
+      <Footer/>
+    </footer>
+    </>
   );
 }
 
