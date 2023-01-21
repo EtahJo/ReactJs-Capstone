@@ -1,13 +1,19 @@
 import React from 'react'
-import ItemOne from '../icons_assets/restauranfood.jpg'
 
-const Special = ({image}) => {
+
+const Special = ({image,name,price}) => {
   return (
-    <div>
+    <div className='special'>
         <img src={image} alt="Food Image"/>
-        <div>
-            
+        <div className='specialTagline'>
+        <h3>{name}</h3>
+        <p>XAF {price}</p>
         </div>
+        <p className='specialDesc'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, </p>
+        <div className='order'>
+        <p>Order Delivery</p>
+        </div>
+       
     </div>
   )
 }

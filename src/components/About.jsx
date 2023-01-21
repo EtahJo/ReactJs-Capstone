@@ -2,7 +2,11 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div>About</div>
+    <div className='gridContainer'>
+        <div>Try Grid</div>
+        <div>Try Grid</div>
+        <div>Try Grid</div>
+    </div>
   )
 }
 
