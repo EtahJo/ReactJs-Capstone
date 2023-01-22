@@ -1,36 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Markazi+Text:wght@400;500;600;700&display=swap');
 nav> ul{
     display: grid;
-    grid-template-columns:  repeat(8,0.2fr); 
+    grid-template-columns:  repeat(4,0.5fr); 
     align-items: center;
+    width: min(95%,55rem);
+    margin-inline: auto;
+    align-items: center;
+    gap: 5px;
     /* grid-template-rows: 100px repeat(7,50px);
    
     /* grid-auto-flow: row */
 }
-nav{
-    width: min(95%,60rem);
-    margin-inline: auto;
-    align-items: center;
-}
-.grid-col-span-2{
-    grid-column: span 2;
-}
 nav img{
-    width: 200px;
+  
+  
+   width: 200px;
+   margin-left: 0;
 }
+.navLinks{
+ grid-column: span 3; 
+ display: grid;
+ grid-template-columns: repeat(8,1fr);
+ gap: 10px;
+ align-items: center;
+}
+nav{
+  padding: 10px 0;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  width: 100%;
+  background-color: white;
+}
+
 nav li{
     list-style: none;
     font-family: Karla;
     font-weight: 800;
+}
+nav li:nth-child(5){
+    grid-column: span 2;
+    /* grid-area: 1 / 1 / 1 / 1; */
+}
+nav li:last-child{
+    border: none;
+    padding: 10px 15px;
+    background-color: #F4CE14;
+    border-radius: 10px;
+    font-weight: 800;
+    /* width: 150px; */
+    text-align: center;
 }
 nav a{
     text-decoration: none;
     color: black;
     font-weight: 800;
 }
-.grid-container {
-    display: inline-grid;
-  }
+
   main{
     display: grid;
   }
@@ -40,10 +66,11 @@ nav a{
   .heroSection{
    padding: 20px ;
 background-color: #495E57;
+margin-top: 70px;
   }
   .heroLeft{
     /* grid-column: span 5; */
-    grid-column-start:2;
+    grid-column-start:1;
     grid-column-end: 5;
   }
   .heroLeft h2{
@@ -98,6 +125,7 @@ background-color: #495E57;
     border-radius: 10px;
     font-weight: 800;
     width: 150px;
+   
   }
 
   @media (max-width:840px){
@@ -127,7 +155,7 @@ background-color: #495E57;
   
   }
 .special img{
-    width: 200px;
+    width: 250px;
     height: 130px;
     object-fit: cover;
     border-radius: 10px;
@@ -137,22 +165,24 @@ background-color: #495E57;
 .special{
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    width: 200px;
+    width: 250px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    /* padding: 5px; */
 }
 .specialTagline{
     grid-column: span 2;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     align-items: center;
-    padding: 5px;
+    padding: 0 10px;
 }
 .specialTagline p{
-    padding: 5px;
+    padding:0  10px;
     font-weight: 800;
     color: #EE9972;
     font-size: 10px;
+    margin-left: auto;
 }
 .specialTagline h3{
     grid-column: span 2;
@@ -160,7 +190,7 @@ background-color: #495E57;
 .specialDesc{
     grid-column: span 2;
     color: #495E57;
-    padding: 5px;
+    padding: 0 10px;
 }
 .order p{
     color: black;
@@ -169,24 +199,25 @@ background-color: #495E57;
 }
 .order{
     grid-column: span 2;
-    padding: 5px;
+    padding: 10px;
 }
 .highlights{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     margin-inline:auto ;
     width: min(95%,60rem);
-    margin-top: 40px;
+    margin-top: 80px;
 }
 .highlightsHeader{
     grid-column: span 3;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(5,1fr);
     align-items: center;
+    margin: 20px;
 }
 .highlightsHeader h3{
     font-size: 30px;
-    grid-column: span 3;
+    grid-column: span 4;
 }
 .highlightsHeader button{
     border: none;
@@ -195,6 +226,7 @@ background-color: #495E57;
     border-radius: 10px;
     font-weight: 800;
     width: 100px;
+    /* margin-left: auto; */
     height: 40px;
     
 }
@@ -202,4 +234,149 @@ background-color: #495E57;
     grid-column: span 3;
     display: grid;
     grid-template-columns: repeat(3,1fr);
+}
+
+.testimony{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  width: 250px;
+  background-color: white;
+  padding: 10px;
+  /* gap: 5px; */
+}
+.comment{
+  display: grid;
+  grid-template-columns:50px 200px;
+  align-items: center;
+  gap: 10px;
+}
+.rating{
+  display: flex;
+  align-items: center;
+}
+.rating p{
+  font-size: 15px;
+}
+.comment img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.testimony p{
+  color: black;
+  font-family: Karla;
+}
+.testimony p:nth-child(1){
+  font-weight: bold;
+  font-family: Markazi Text;
+  font-size: 20px;
+}
+.testimonials{
+  display: grid;
+  grid-template-columns: 1fr;
+ padding: 40px 0;
+ align-items: center;
+ margin:30px 0;
+  background-color: #495E57;
+}
+.testimonials h3{
+  font-family: markazi Text;
+  font-size: 50px;
+  text-align: center;
+  color: #F4CE14;
+  margin: 0;
+}
+.testimonialsContent{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  width: min(95%,60rem);
+  margin-inline: auto;
+  /* margin:auto 0; */
+}
+.about{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: min(95%,50rem);
+  margin-inline: auto;
+  /* gap: 70px; */
+  padding: 150px 0;
+  margin-bottom: 200px;
+}
+.aboutLeft{
+
+}
+.aboutLeft h3{
+  color: #F4CE14;
+  font-family: Markazi Text;
+  font-size: 50px;
+  margin: 0;
+}
+.about p{
+color: black;
+}
+.aboutLeft p:nth-child(1){
+  color: #495E57;
+  margin-top: 10px;
+}
+.aboutRight {
+  position: relative;
+  /* margin-right: auto; */
+}
+.aboutRight img{
+  /* grid-column: span 2; */
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  position: absolute;
+}
+.aboutRight img:nth-child(2){
+  z-index: 100;
+  right:100px;
+  top: -60px;
+
+}
+.aboutRight img:nth-child(1){
+  bottom: -60px;
+  right: 200px;
+}
+.footer{
+  background-color: #495E57;
+  padding: 20px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 200;
+ 
+}
+.footerContent{
+  width: min(95%,60rem);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  gap: none;
+}
+.footerContent img{
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
+.footerContent li{
+  list-style: none;
+}
+
+.footerContent a{
+  text-decoration: none;
+  color: black;
+}
+.footer h3{
+  color: #F4CE14;
+  font-family: markazi Text;
+  font-size: 25px;
+  /* width: 150px; */
+} 
+.footerItems{
+  grid-column: span 2;
+}
+.footerItems li{
+  font-weight: bold;
 }

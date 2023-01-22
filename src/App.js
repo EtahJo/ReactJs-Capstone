@@ -1,28 +1,39 @@
 import './App.css';
 import About from './components/About';
 import Footer from './components/Footer';
-import Herosection from './components/Herosection';
-import Highlights from './components/Highlights';
+
 import Navbar from './components/Navbar';
-import Testimonial from './components/Testimonial';
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './components/styles.css';
+import './pages/styles.css'
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Menu from './components/Highlights';
+import Order from './pages/Order';
+import Reservations from './pages/Reservations';
 
 function App() {
   return (
-    <>
-    <header>
+    <BrowserRouter>
+     <header>
       <Navbar/>
     </header>
+
     <main>
-    <Herosection/>
-    <Highlights/>
-    <Testimonial/>
-    <About/>
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+    <Route path='/about' element={<About/>}/>
+   <Route path='/login' element={<Login/>}/>
+   <Route path='/menu' element={<Menu/>}/>
+   <Route path='/order' element={<Order/>}/>
+   <Route path='/reservations' element={<Reservations/>}/>
+
+    </Routes>
+   <Footer/>
+  
     </main>
-    <footer>
-      <Footer/>
-    </footer>
-    </>
+    </BrowserRouter>
   );
 }
 
