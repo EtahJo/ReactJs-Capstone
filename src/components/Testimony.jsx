@@ -2,7 +2,6 @@ import React from 'react'
 
 const Testimony = ({number,image,comment}) => {
   // const [ rate,setRate]= useState([])
-  console.log(Array(3).fill(4))
   return (
     <div className='testimony'>
         <p>Jennifer</p>
@@ -12,8 +11,8 @@ const Testimony = ({number,image,comment}) => {
         </div>
         <div className='rating'>
         {
-         Array(number).fill(4).map((star)=>(
-            <p>⭐</p>
+         Array(number).fill(4).map((star,index)=>(
+            <p key={index}>⭐</p>
           ))
         }
         </div>
