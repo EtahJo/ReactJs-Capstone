@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Menu from './components/Highlights';
 import Order from './pages/Order';
 import Reservations from './pages/Reservations';
+import BookingConfirmation from './pages/BookingComfirmation';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
    <Route path='/menu' element={<Menu/>}/>
    <Route path='/order' element={<Order/>}/>
    <Route path='/reservations' element={<Reservations/>}/>
+   <Route path='/booking-confirmation' element={<BookingConfirmation/>}/>
 
     </Routes>
    <Footer/>

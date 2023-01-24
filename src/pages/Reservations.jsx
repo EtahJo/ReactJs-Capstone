@@ -1,5 +1,7 @@
-import React,{useState,useReducer} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { reducer,innitialState } from '../reducer/reducer';
+import { reserveContext } from '../context/context';
 
 const Reservations = () => {
     const[form,setForm]= useState({
@@ -8,12 +10,45 @@ const Reservations = () => {
         guests:'',
         occasion:'',
     })
-    const [bookingTime,dispatch]= useReducer(reducer,innitialState)
-    // const [bookingTime,setBookingTime]=useState([])
+    const navigate = useNavigate();
+    // const [bookingTime,dispatch]= useReducer(reducer,innitialState)
+    const [bookingTime,setBookingTime]=useState([])
+    const {reservation,setReservation}=useContext(reserveContext)
+    const fetchAPI = function(date) {
+        let result = [];
+        const seededRandom = function (seed) {
+            var m = 2**35 - 31;
+            var a = 185852;
+            var s = seed % m;
+            return function () {
+                return (s = s * a % m) / m;
+            };
+        }
+        let random = seededRandom(date);
+    
+        for(let i = 17; i <= 23; i++) {
+            if(random() < 0.5) {
+                result.push(i + ':00');
+            }
+            if(random() < 0.5) {
+                result.push(i + ':30');
+            }
+        }
+        return result;
+    };
+    useEffect(()=>{
+    //  const date = new Date();
+    //     console.log(date.getDate())
+    // console.log( fetchAPI(24))
+   
+    },[])
     const onChange =(vals)=>{
-        console.log(vals.target[0])
         if(vals.target.id === "res-date"){
-            dispatch({type:vals.target.value,})
+            // dispatch({type:vals.target.value,})
+           const times=  fetchAPI(vals.target.value.split('-')[2])
+            setBookingTime(times)
+            console.log(vals.target.value.split('-')[2])
+
         }
        
         // if(vals?.target.value ==="2023-01-23"){
@@ -40,13 +75,14 @@ const Reservations = () => {
     }
     const onSubmit = (e)=>{
         e.preventDefault();
-        console.log(form)
         setForm({
             date:'',
         time:'',
         guests:'',
         occasion:'',
         })
+        setReservation({...reservation,...form})
+        navigate('/booking-confirmation')
     }
   return (
     <main className='reservationForm'>
@@ -56,6 +92,7 @@ const Reservations = () => {
    <input type="date" 
    id="res-date"
    data-test-id="res-date"
+   required
     value={form.date} 
     onChange={(e)=>setForm({...form,date:e.target.value})}/>
    <label htmlFor="res-time">Choose time</label>
@@ -63,6 +100,7 @@ const Reservations = () => {
    id="res-time" 
    data-test-id="res-time"
    value={form.time} 
+   required
    onChange={(e)=>setForm({...form,time:e.target.value})}>
     {bookingTime.map((time,index)=>(
         <option value={time} key={index}>{time}</option>
@@ -71,6 +109,7 @@ const Reservations = () => {
    <label htmlFor="guests">Number of guests</label>
    <input type="number" 
    placeholder="1" 
+   required
    min="1" max="10" 
    id="guests" 
    data-test-id="guests"
@@ -80,6 +119,7 @@ const Reservations = () => {
    id="occasion" 
    data-test-id="occasion"
    value={form.occasion}
+   required
    onChange={e=>setForm({...form,occasion:e.target.value})}>
       <option value={"birthday"}>Birthday</option>
       <option value={"anniversary"}>Anniversary</option>
