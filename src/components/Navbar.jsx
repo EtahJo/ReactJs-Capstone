@@ -9,6 +9,8 @@ const Navbar = () => {
   const openClicked = ()=>{
     setOpen(!open)
   }
+  let user = localStorage.getItem('user');
+  user= JSON.parse(user)
   return (
     <nav>
         <ul>
@@ -17,9 +19,10 @@ const Navbar = () => {
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/about'>About</Link></li>
             <li><Link to='/menu'>Menu</Link></li>
-            <li><Link to='/reservations'>Reservations</Link></li>
+            <li><Link to='/reservationList'>Reservations</Link></li>
             <li><Link to='/order'>Order Online</Link></li>
-            <li><Link to='/login'>Login</Link></li>
+            {user ? (<p style={{color:'#F4CE14',fontWeight:'bold'}}>Hi,{user}</p>):(<li><Link to='/login'>Login</Link></li>)}
+            
             </div>
             <div className='navIcon' onClick={openClicked}>
               <img src={icon} alt="Hamburger_icon"/>
@@ -31,7 +34,8 @@ const Navbar = () => {
             <li><Link to='/menu'>Menu</Link></li>
             <li><Link to='/reservations'>Reservations</Link></li>
             <li><Link to='/order'>Order Online</Link></li>
-            <li><Link to='/login'>Login</Link></li>
+            {user ? (<p>Hi,{user}</p>):(<li><Link to='/login'>Login</Link></li>)}
+            {/* <li><Link to='/login'>Login</Link></li> */}
               </div>
             }
             

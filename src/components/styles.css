@@ -538,3 +538,48 @@ color: black;
 
   }
 }
+
+.reserveListContainer{
+  background-color: #495E57;
+  margin: 10px ;
+  display: flex;
+  justify-content: center;
+  padding: 10px 5px;
+  align-items: center;
+  border-radius: 10px;
+  width: min(95%,30rem);
+  margin-inline: auto;
+}
+.listSectionTwo{
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  align-items: center;
+}
+.listSectionTwo p:nth-child(1){
+  color: #EE9972;
+  text-align: center;
+  text-transform: capitalize;
+}
+.listSectionTwo p:nth-child(2){
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+.listSectionOne p{
+  color: #F4CE14;
+  font-weight: bold;
+  font-size: 40px;
+}
+.listContainer{
+  margin-top: 80px;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 80vh;
+}
+.listContainer h3{
+  text-align: center;
+  font-size: 60px;
+  font-family: markazi Text;
+  
+}
