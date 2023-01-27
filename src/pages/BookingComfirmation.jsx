@@ -19,18 +19,22 @@ const closeModal=()=>{
 const onSubmit=(e)=>{
     e.preventDefault()
    const id = Math.random()
-    setReservation({...reservation,...form,id})
-let theList =[]
+    setReservation({...reservation,...form,id}) 
     let reserved = localStorage.getItem('reservations')
+    let prevList= localStorage.getItem('reservationList');
+    prevList= JSON.parse(prevList)
     reserved= JSON.parse(reserved)
-    console.log(reserved)
-    setList([...list,reserved])
+    let reservationList =[];
+    if(prevList || reserved){
+        reservationList = [...prevList,reserved]
+    }
+   
+    localStorage.setItem('reservationList',JSON.stringify(reservationList))
+    console.log(reservationList)
     console.log("Reservations",reserved)
-    setList(list)
     localStorage.setItem('List',JSON.stringify(list))
-    console.log(list)
-    console.log("List",localStorage.getItem('List'))
     localStorage.setItem('reservations',JSON.stringify(reservation))
+    localStorage.setItem('user',JSON.stringify(form.firstName))
     setConfirm(true)
     setTimeout(()=>{closeModal()},5000)
     // const confirmModal = setTimeout(()=>{
