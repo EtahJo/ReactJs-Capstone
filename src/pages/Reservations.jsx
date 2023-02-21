@@ -2,6 +2,14 @@ import React,{useState,useEffect,useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { reducer,innitialState } from '../reducer/reducer';
 import { reserveContext } from '../context/context';
+import {object,string} from 'yup';
+const formSchema = object().shape({
+    firstName: string().required(),
+    lastName: string().required(),
+    email: string().email().required(),
+    password: string().min(8).required(),
+    website: string().url().required(),
+  }) 
 
 const Reservations = () => {
     const[form,setForm]= useState({
@@ -10,6 +18,12 @@ const Reservations = () => {
         guests:'',
         occasion:'',
     })
+    const [error,setError]=useState({
+        date:'',
+        time:'',
+        guests:'',
+        occasion:''
+    });
     const navigate = useNavigate();
     // const [bookingTime,dispatch]= useReducer(reducer,innitialState)
     const [bookingTime,setBookingTime]=useState([])
@@ -36,12 +50,7 @@ const Reservations = () => {
         }
         return result;
     };
-    useEffect(()=>{
-    //  const date = new Date();
-    //     console.log(date.getDate())
-    // console.log( fetchAPI(24))
-   
-    },[])
+
     const onChange =(vals)=>{
         if(vals.target.id === "res-date"){
             // dispatch({type:vals.target.value,})
@@ -73,16 +82,38 @@ const Reservations = () => {
         //     setBookingTime(["17:00","18:00","19:00","20:00","21:00","22:00"])
         // }
     }
+    const validateFunc = ()=>{
+        if(!form.date){
+            setError({...error,date:'Select a date'})
+        }
+        if(!form.time){
+            setError({...error,time:'Select a time'})
+        }
+        if(!form.guests){
+            setError({...error,guests:'How many Guests'})
+        }
+        if(!form.occasion){
+            setError({...error,occasion:'Select a date'})
+        }
+        if(form.guests === '1'){
+            setError({...error,guests:'Guest must be more than one(1)'})
+        }
+    }
     const onSubmit = (e)=>{
         e.preventDefault();
+       validateFunc()
+       if(!error){
+        setReservation({...reservation,...form})
         setForm({
             date:'',
         time:'',
         guests:'',
         occasion:'',
         })
-        setReservation({...reservation,...form})
+       
         navigate('/booking-confirmation')
+       }
+      
     }
   return (
     <main className='reservationForm'>
@@ -95,6 +126,7 @@ const Reservations = () => {
    required
     value={form.date} 
     onChange={(e)=>setForm({...form,date:e.target.value})}/>
+    {error.date && <p>{error.date}</p>}
    <label htmlFor="res-time">Choose time</label>
    <select 
    id="res-time" 
@@ -114,6 +146,7 @@ const Reservations = () => {
    id="guests" 
    data-test-id="guests"
    onChange={e=>setForm({...form,guests:e.target.value})} defaultValue={form.time}/>
+   {error.guests && <p>{error.guests}</p>}
    <label htmlFor="occasion">Occasion</label>
    <select 
    id="occasion" 
