@@ -101,8 +101,9 @@ const Reservations = () => {
     }
     const onSubmit = (e)=>{
         e.preventDefault();
+        console.log(error)
        validateFunc()
-       if(!error){
+       if(!error.date || !error.time || error.guests || error.occasion){
         setReservation({...reservation,...form})
         setForm({
             date:'',
